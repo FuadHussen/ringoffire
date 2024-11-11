@@ -6,11 +6,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogOverviewExampleDialog } from '../dialog-overview-example-dialog/dialog-overview-example-dialog.component';
-
+import { GameInfoComponent } from '../game-info/game-info.component';
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, PlayerComponent, MatButtonModule, MatIconModule],
+  imports: [CommonModule, PlayerComponent, MatButtonModule, MatIconModule, GameInfoComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
@@ -45,6 +45,7 @@ export class GameComponent implements OnInit {
       setTimeout(() => {
         this.game.playedCard.push(this.currentCard);
         this.pickCardAnimation = false;
+        this.game.currentPlayer = (this.game.currentPlayer + 1) % this.game.players.length;
       }, 1000);
     }
   }
