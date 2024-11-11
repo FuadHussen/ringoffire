@@ -8,5 +8,5 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="name" (click)="onOkClick()">Ok</button>
+  <button mat-button [disabled]="!name" [mat-dialog-close]="name" (click)="onOkClick()">Ok</button>
 </mat-dialog-actions>

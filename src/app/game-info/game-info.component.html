@@ -1,6 +1,6 @@
 <mat-card appearance="outlined">
-    <mat-card-title style="padding: 0 14px;">{{ title }}</mat-card-title>
+    <mat-card-title style="padding: 0 14px;">{{ card ? title: 'Bitte ziehe eine Karte' }}</mat-card-title>
     <mat-card-content>
-        {{ description }}
+        {{ card ? description : 'Bitte klicke auf das Kartendeck um eine Karte zu ziehen' }}
     </mat-card-content>
 </mat-card>
