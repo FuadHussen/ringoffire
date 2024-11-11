@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, model, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Game } from '../../models/game';
 import { PlayerComponent } from '../player/player.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogOverviewExampleDialog } from '../dialog-overview-example-dialog/dialog-overview-example-dialog.component';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, PlayerComponent],
+  imports: [CommonModule, PlayerComponent, MatButtonModule, MatIconModule],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
@@ -15,6 +19,9 @@ export class GameComponent implements OnInit {
   currentCard: string = '';
   playedCards: string[] = [];
   game: Game;
+  readonly animal = signal('');
+  readonly name = model('');
+  readonly dialog = inject(MatDialog);
 
   constructor() {
     this.game = new Game();
@@ -40,5 +47,15 @@ export class GameComponent implements OnInit {
         this.pickCardAnimation = false;
       }, 1000);
     }
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      data: {name: this.name(), animal: this.animal()},
+    });
+
+    dialogRef.afterClosed().subscribe((name: string) => {
+      this.game.players.push(name);
+    });
   }
 }
