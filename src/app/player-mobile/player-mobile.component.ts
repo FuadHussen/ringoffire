@@ -10,7 +10,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PlayerMobileComponent {
   @Input() name: string = '';
   @Input() playerActive: boolean = false;
-
+  @Input() image: string = 'assets/img/profile/profile.png';
+  
   constructor() {
   }
 

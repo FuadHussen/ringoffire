@@ -87,3 +87,25 @@
         margin: 0 10px;
     }
 }
+
+app-player,
+app-player-mobile {
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.1);
+        filter: brightness(1.15);
+    }
+}
+
+.game-over {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: black;
+
+    img {
+        width: 400px;
+    }
+}
